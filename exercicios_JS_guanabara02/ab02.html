@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contador</title>
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -21,7 +19,7 @@
             <p><input type="button" value="contar" onclick="contar()"></p>
         </div>
         <div id="res">
-            Preparando a contagm..
+            Preparando a contagem..
         </div>
     </section>
     <footer>
@@ -35,13 +33,32 @@
             let passo = document.getElementById('txtp')
             let res = document.getElementById('res')
 
+            //validação caso o usuário nao digite todos os dados
             if (ini.value.length == 0 || fim.value.length == 0 || passo.value.length == 0){
                 alert('Faltam dados')
             } else {
-                res.innerHTML = 'contando..'
+                res.innerHTML = 'Contando..'
                 let i = Number(ini.value)
                 let f = Number(fim.value)
                 let p = Number(passo.value)
+                if(p <= 0){
+                    alert('impossivel contar')
+                }
+
+                /*a variável 'contador' vai receber i{numeroInicial},
+                e enquanto ele for menor que que o f{numeroFinal},
+                ele vai se auto adicionar o p{quantidade de passos/pulos}*/
+                if(i<f){
+                    //contagem crescente
+                    for(let c = i ; c<= f ; c += p){
+                    res.innerHTML += `${c}, `
+                }
+            }else{
+                //contagem regressiva
+                for(let c = i; c > f; c -= p){
+                    res.innerHTML += `${c} `
+                }
+            }
                 
             }
         }
